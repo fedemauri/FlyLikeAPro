@@ -2,7 +2,7 @@ const express = require('express');
 const router = express.Router();
 const flight = require('../services/flight');
 
-/* GET airport listing. */
+/* GET flight listing. */
 router.get('/', function (req, res, next) {
     try {
         res.json(flight.getMultiple(req.query.page));

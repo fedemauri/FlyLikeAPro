@@ -24,7 +24,7 @@ function SearchInputs({ data, setData }) {
 
     const filterAirport = (inputValue: string, callback) => {
         let filteredOptions = [];
-        console.log('airportContext.airports', airportContext.airports);
+        
         if (inputValue)
             filteredOptions = airportContext.airports
                 .filter(
@@ -85,12 +85,12 @@ function SearchInputs({ data, setData }) {
 
             <Form.Group className='form-group mb-3 w-25' controlId='depart'>
                 <Form.Label controlId='depart' label='Depart'></Form.Label>
-                <Form.Control type='date' />
+                <Form.Control type='date' disabled/>
             </Form.Group>
 
             <Form.Group className='form-group mb-3 w-25' controlId='return'>
                 <Form.Label controlId='return' label='Return'></Form.Label>
-                <Form.Control type='date' />
+                <Form.Control type='date' disabled/>
             </Form.Group>
         </div>
     );

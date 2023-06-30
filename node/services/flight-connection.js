@@ -1,9 +1,28 @@
-export const getBestFlightsWithPrices = (
-    flights: array<any>,
-    departureAirport: string,
-    arrivalAirport: string
-): Flight[] => {
-    const flightsWithPrices: Flight[] = [];
+const db = require('../services/db');
+const config = require('../config');
+
+function getMultiple(from, to) {
+    console.log(from, to);
+    const data = db.query(
+        `SELECT * FROM flights WHERE code_departure = ? OR code_arrival = ?`,
+        [from, to]
+    );
+
+    const connectionFlights = getBestFlightsWithPrices(data, from, to);
+
+    return {
+        connectionFlights,
+    };
+}
+
+/**
+ * Return list of flight connection between two airports
+ * @param {*} flights
+ * @param {*} departureAirport
+ * @param {*} arrivalAirport
+ */
+function getBestFlightsWithPrices(flights, departureAirport, arrivalAirport) {
+    const flightsWithPrices = [];
     const directFlights = flights.filter((flight) => {
         return (
             flight.code_departure === departureAirport &&
@@ -12,6 +31,7 @@ export const getBestFlightsWithPrices = (
     });
 
     if (directFlights.length > 0) {
+        directFlights.sort((a, b) => a.price - b.price);
         flightsWithPrices.push(...directFlights);
     }
 
@@ -28,7 +48,7 @@ export const getBestFlightsWithPrices = (
         arrivalFlights.forEach((arrivalFlight) => {
             if (departureFlight.code_arrival === arrivalFlight.code_departure) {
                 const price = departureFlight.price + arrivalFlight.price;
-                flightsWithPrices.push({
+                connectionFlights.push({
                     first_fly_id: departureFlight.id,
                     second_fly_id: arrivalFlight.id,
                     code_departure: departureFlight.code_departure,
@@ -39,10 +59,12 @@ export const getBestFlightsWithPrices = (
             }
         });
     });
-
     connectionFlights.sort((a, b) => a.price - b.price);
 
     return [...directFlights, ...connectionFlights];
-};
+}
 
-export const SERVER_ADDR = 'http://localhost:3003';
+module.exports = {
+    getMultiple,
+    getBestFlightsWithPrices,
+};

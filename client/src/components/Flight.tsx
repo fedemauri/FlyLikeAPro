@@ -6,6 +6,13 @@ type FlightProps = {
     price: number;
 };
 
-export const Flight = ({ from, to, price }: FlightProps): JSX.Element => {
-    return 'ciao';
+export const Flight = ({
+    from,
+    to,
+    price,
+    layover,
+}: FlightProps): JSX.Element => {
+    return <div>{`Da: ${from}  A: ${to}  Price: ${price}  ${
+        layover ? `Layover: ${layover}` : ''
+    }`}</div>;
 };
