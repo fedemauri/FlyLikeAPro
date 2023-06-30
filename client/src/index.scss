@@ -1,0 +1,17 @@
+@import '~bootstrap/scss/bootstrap.scss';
+
+.App {
+    height: 100vh;
+    overflow: auto;
+    .container {
+        padding-left: 1rem;
+        padding-right: 1rem;
+        .search-inputs {
+            background-color: #36373a0f;
+            border-radius: 1rem;
+            .form-group {
+                padding-right: 1rem;
+            }
+        }
+    }
+}
