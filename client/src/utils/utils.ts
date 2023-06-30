@@ -50,3 +50,13 @@ export const SERVER_ADDR = 'http://localhost:3003';
 export const getAirportFromCode = (airports, code) => {
     return airports.find((el) => el.code === code);
 };
+
+export const getCoordinateObj = (coordinate) => {
+    const formattedCoordinate = coordinate.replace(/\s+/g, '');
+    const splitted = formattedCoordinate.split(',');
+
+    return {
+        lat: parseFloat(splitted[0]),
+        lng: parseFloat(splitted[1]),
+    };
+};

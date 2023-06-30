@@ -20,11 +20,26 @@
                 padding-right: 1rem;
             }
         }
+        .flight-search {
+            .header {
+                align-items: center;
+            }
+            .resume-prices {
+                .nav {
+                    font-size: 1rem;
+                }
+                .price {
+                    font-size: 0.85rem;
+                    font-weight: 300;
+                }
+            }
+        }
         .flight {
             display: grid;
             grid-template-columns: 0.1fr 1.5fr 1fr 1.5fr 0.3fr;
             grid-gap: 1.5rem;
             align-items: center;
+            width: 100%;
 
             $fly-padding: 0.3rem;
             $route-font-size: 0.85rem;
@@ -64,6 +79,62 @@
                 padding-top: $fly-padding;
                 font-weight: 800;
             }
+        }
+    }
+    .accordion {
+        --bs-accordion-active-bg: transparent;
+        --bs-accordion-btn-focus-border-color: transparent;
+        .accordion-item {
+            border: 0;
+        }
+    }
+
+    .timeline {
+        position: relative;
+        margin: 20px;
+
+        .timeline-item {
+            position: relative;
+            padding-left: 40px;
+            margin-bottom: 40px;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            width: 2px;
+            height: 100%;
+            border-left: 2px dashed #ccc;
+        }
+
+        .timeline-content {
+            background-color: #f2f2f270;
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .timeline-title {
+            margin-top: 0;
+        }
+
+        .timeline-description {
+            margin-bottom: 0;
+        }
+
+        .timeline-item:after {
+            content: '';
+            position: absolute;
+            left: 14px;
+            top: 88px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            border: 3px solid #ccc;
+        }
+        .timeline-item:last-child:after {
+            display: none;
         }
     }
 }
