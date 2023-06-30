@@ -24,7 +24,6 @@ function App() {
     const fetchData = async (from, to) => {
         try {
             const response = await axios.get(`${SERVER_ADDR}/airport`);
-            console.log(response.data);
             if (response?.data?.data) setAirports(response.data.data);
         } catch (error) {
             console.error(error);

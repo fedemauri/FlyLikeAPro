@@ -1,17 +1,11 @@
 const db = require('../services/db');
 const config = require('../config');
 
-function getMultiple(page = 1) {
-    const offset = (page - 1) * config.listPerPage;
-    const data = db.query(`SELECT * FROM airports LIMIT ?,?`, [
-        offset,
-        config.listPerPage,
-    ]);
-    const meta = { page };
+function getMultiple() {
+    const data = db.query(`SELECT * FROM airports`, []);
 
     return {
         data,
-        meta,
     };
 }
 

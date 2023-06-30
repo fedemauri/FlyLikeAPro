@@ -46,3 +46,7 @@ export const getBestFlightsWithPrices = (
 };
 
 export const SERVER_ADDR = 'http://localhost:3003';
+
+export const getAirportFromCode = (airports, code) => {
+    return airports.find((el) => el.code === code);
+};

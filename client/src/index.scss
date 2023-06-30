@@ -3,6 +3,13 @@
 .App {
     height: 100vh;
     overflow: auto;
+    .header {
+        .logo {
+            height: 35px;
+            width: 35px;
+            margin-right: 1rem;
+        }
+    }
     .container {
         padding-left: 1rem;
         padding-right: 1rem;
@@ -11,6 +18,51 @@
             border-radius: 1rem;
             .form-group {
                 padding-right: 1rem;
+            }
+        }
+        .flight {
+            display: grid;
+            grid-template-columns: 0.1fr 1.5fr 1fr 1.5fr 0.3fr;
+            grid-gap: 1.5rem;
+            align-items: center;
+
+            $fly-padding: 0.3rem;
+            $route-font-size: 0.85rem;
+
+            .name {
+                font-size: 0.9rem;
+            }
+            .code {
+                font-weight: bold;
+            }
+            .logo {
+                height: 35px;
+                width: 35px;
+                margin-right: 1rem;
+            }
+            .from {
+                padding-top: $fly-padding;
+            }
+            .to {
+                padding-top: $fly-padding;
+            }
+            .layover {
+                font-weight: 300;
+                padding-top: $fly-padding;
+                font-size: $route-font-size;
+                .layover-str {
+                    font-weight: bold;
+                    font-size: $route-font-size;
+                }
+            }
+            .direct {
+                padding-top: $fly-padding;
+                font-weight: 800;
+                font-size: $route-font-size;
+            }
+            .price {
+                padding-top: $fly-padding;
+                font-weight: 800;
             }
         }
     }
