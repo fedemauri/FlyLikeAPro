@@ -1,7 +1,7 @@
 import { Navbar, Container } from 'react-bootstrap';
 import siteLogo from './../img/site-icon.png';
 
-export const Header = () => {
+export const Header = ({ resetTrip }) => {
     return (
         <Navbar className='top-header bg-body-tertiary'>
             <Container>
@@ -10,7 +10,7 @@ export const Header = () => {
                 </Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className='justify-content-end'>
-                    <Navbar.Text>Promotions</Navbar.Text>
+                    <Navbar.Text onClick={resetTrip}>Promotions</Navbar.Text>
                 </Navbar.Collapse>
             </Container>
         </Navbar>

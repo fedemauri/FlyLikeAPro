@@ -120,9 +120,13 @@ export const FlightSearch = ({ from, to }: FlightSearchProps) => {
                             price,
                             code_layover,
                         } = el;
+                        console.log('el', el);
                         return (
                             <ListGroup.Item
-                                key={code_departure + ' ' + code_arrival}
+                                key={
+                                    el.id ??
+                                    el.first_fly_id + ' ' + el.second_fly_id
+                                }
                             >
                                 <Flight
                                     from={code_departure}

@@ -38,6 +38,8 @@ function App() {
         });
     };
 
+    const resetTrip = () => handleSetTrip(null, null);
+
     return (
         <div className='App'>
             <AirportProvider
@@ -45,7 +47,7 @@ function App() {
                     airports: airports,
                 }}
             >
-                <Header />
+                <Header resetTrip={resetTrip} />
                 <div className='container'>
                     <SearchInputs data={formData} setData={setFormData} />
                     {formData?.from && formData.to ? (
