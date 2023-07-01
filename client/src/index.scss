@@ -3,11 +3,19 @@
 .App {
     height: 100vh;
     overflow: auto;
-    .header {
-        .logo {
-            height: 35px;
-            width: 35px;
-            margin-right: 1rem;
+    padding-bottom: 2rem;
+    .logo {
+        height: 35px;
+        width: 35px;
+        margin-right: 1rem;
+    }
+    .top-header {
+        background-color: #006cff !important;
+        .navbar-brand {
+            color: white;
+        }
+        .navbar-text {
+            color: white;
         }
     }
     .container {
@@ -16,13 +24,63 @@
         .search-inputs {
             background-color: #36373a0f;
             border-radius: 1rem;
+            box-shadow: 6px 6px 20px #dedededb;
             .form-group {
                 padding-right: 1rem;
             }
         }
+
+        .promotions {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-gap: 20px;
+
+            .grid-item {
+                background-color: transparent;
+                text-align: center;
+                border-radius: 1rem;
+                .img {
+                    max-height: 100%;
+                    max-width: 100%;
+                    object-fit: contain;
+                }
+            }
+        }
+
+        .image-with-text {
+            position: relative;
+            color: white;
+            margin: 0;
+            box-shadow: 6px 6px 20px #dedededb;
+
+            .figure-caption {
+                position: absolute;
+                bottom: 8px;
+                left: 16px;
+                z-index: 100;
+                font-weight: 900;
+                font-size: 3rem;
+                color: white;
+                text-shadow: 6px 4px 5px #0a0808;
+            }
+            .figure-img {
+                margin: 0;
+                border-radius: 0.8rem;
+            }
+        }
+
         .flight-search {
+            .card-body {
+                padding: 1rem 0.5rem 0.2rem;
+            }
             .header {
                 align-items: center;
+                .nav-link {
+                    font-size: 0.9rem;
+                }
+                .header-info {
+                    font-size: 1rem;
+                }
             }
             .resume-prices {
                 .nav {

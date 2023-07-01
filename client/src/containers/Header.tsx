@@ -3,7 +3,7 @@ import siteLogo from './../img/site-icon.png';
 
 export const Header = () => {
     return (
-        <Navbar className='header bg-body-tertiary'>
+        <Navbar className='top-header bg-body-tertiary'>
             <Container>
                 <Navbar.Brand>
                     <img className={'logo'} src={siteLogo}></img> Fly like a PRO

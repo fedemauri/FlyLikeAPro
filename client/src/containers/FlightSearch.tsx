@@ -83,14 +83,8 @@ export const FlightSearch = ({ from, to }: FlightSearchProps) => {
                 <Card.Body>
                     <Card.Title>
                         <div className='header d-flex flex-row justify-content-around'>
-                            <span>{`Best flights available (${flights.length})`}</span>
+                            <span className='header-info'>{`Best flights available (${flights.length})`}</span>
                             <div className='resume-prices'>
-                                {/* <div className='direct'>
-                                    {getBestDirectPrice().price}
-                                </div>
-                                <div className='with-stop'>
-                                    {getBestPriceWithStop().price}
-                                </div> */}
                                 <Tabs
                                     defaultActiveKey='all'
                                     onSelect={handleSelect}
@@ -114,7 +108,7 @@ export const FlightSearch = ({ from, to }: FlightSearchProps) => {
                                     </Tab>
                                 </Tabs>
                             </div>
-                            <span>{`From: ${from.value} To: ${to.value}`}</span>
+                            <span className='header-info'>{`From: ${from.value} To: ${to.value}`}</span>
                         </div>
                     </Card.Title>
                 </Card.Body>

@@ -7,6 +7,7 @@ import AirportContext, {
 } from './containers/AirportContext.tsx';
 import { Header } from './containers/Header.tsx';
 import { FlightSearch } from './containers/FlightSearch.tsx';
+import Promotions from './containers/Promotions.tsx';
 
 function App() {
     const airportContext = useContext(AirportContext);
@@ -30,6 +31,13 @@ function App() {
         }
     };
 
+    const handleSetTrip = (from, to) => {
+        setFormData({
+            from: from,
+            to: to,
+        });
+    };
+
     return (
         <div className='App'>
             <AirportProvider
@@ -40,8 +48,10 @@ function App() {
                 <Header />
                 <div className='container'>
                     <SearchInputs data={formData} setData={setFormData} />
-                    {formData?.from && formData.to && (
+                    {formData?.from && formData.to ? (
                         <FlightSearch from={formData.from} to={formData.to} />
+                    ) : (
+                        <Promotions setTrip={handleSetTrip} />
                     )}
                 </div>
             </AirportProvider>
