@@ -34,8 +34,6 @@ npm start
 
 ## API Documentation
 
-## API Documentation
-
 This documentation provides an overview of the API endpoints available in the application.
 
 ### Base URL
