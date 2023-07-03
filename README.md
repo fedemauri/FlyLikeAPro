@@ -35,6 +35,10 @@ npm install
 npm start
 ```
 
+To view the site visit: `http://localhost:3000/`
+
+To access the API: `http://localhost:3003/`
+
 ## API Documentation
 
 This documentation provides an overview of the API endpoints available in the application.
