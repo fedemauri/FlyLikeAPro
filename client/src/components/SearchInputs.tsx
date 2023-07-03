@@ -59,6 +59,7 @@ const SearchInputs: React.FC<SearchInputsProps> = ({ data, setData }) => {
                     <AsyncSelect
                         cacheOptions
                         defaultOptions
+                        isClearable
                         loadOptions={debounceNoPromise(filterAirport, 500)}
                         noOptionsMessage={() => 'Type to search'}
                         placeholder='From'
@@ -76,6 +77,7 @@ const SearchInputs: React.FC<SearchInputsProps> = ({ data, setData }) => {
                     <AsyncSelect
                         cacheOptions
                         defaultOptions
+                        isClearable
                         loadOptions={debounceNoPromise(filterAirport, 500)}
                         noOptionsMessage={() => 'Type to search'}
                         placeholder='To'
