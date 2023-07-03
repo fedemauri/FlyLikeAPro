@@ -3,12 +3,17 @@ import { getAirportFromCode } from '../utils/utils.ts';
 import AirportContext from '../containers/AirportContext.tsx';
 import { Spinner, Accordion } from 'react-bootstrap';
 import logo from './../img/fly.png';
-import FlyMap from './../components/FlyMap.tsx';
+
+type Airport = {
+    name: string;
+    code: string;
+};
 
 type FlightProps = {
-    from: string;
-    to: string;
+    from: string | null;
+    to: string | null;
     price: number;
+    layover: string | null;
 };
 
 export const Flight = ({
@@ -20,7 +25,11 @@ export const Flight = ({
     const airportContext = useContext(AirportContext);
     const { airports } = airportContext;
 
-    const [airportInfo, setAirportInfo] = useState({
+    const [airportInfo, setAirportInfo] = useState<{
+        from: Airport | null;
+        to: Airport | null;
+        layover: Airport | null;
+    }>({
         from: null,
         to: null,
         layover: null,
@@ -38,7 +47,7 @@ export const Flight = ({
             to: airportTo,
             layover: airportLayover,
         });
-    }, [from, to, layover]);
+    }, [from, to, layover, airports]);
 
     if (airportInfo.from && airportInfo.to)
         return (
@@ -46,7 +55,11 @@ export const Flight = ({
                 <Accordion.Item eventKey='0'>
                     <Accordion.Header>
                         <div className='flight'>
-                            <img className='grid-item logo' src={logo}></img>
+                            <img
+                                className='grid-item logo'
+                                src={logo}
+                                alt='logo'
+                            ></img>
 
                             <div className='grid-item from'>
                                 <span className='name'>
@@ -94,34 +107,40 @@ export const Flight = ({
     return <Spinner animation='border' />;
 };
 
-const Timeline = ({ from, to, stop }) => {
+type TimelineProps = {
+    from: Airport;
+    to: Airport;
+    stop: Airport | null;
+};
+
+const Timeline = ({ from, to, stop }: TimelineProps): JSX.Element => {
     return (
-        <div class='timeline'>
-            <div class='timeline-item'>
-                <div class='timeline-content'>
-                    <h5 class='timeline-title'>
+        <div className='timeline'>
+            <div className='timeline-item'>
+                <div className='timeline-content'>
+                    <h5 className='timeline-title'>
                         {from.name} ({from.code})
                     </h5>
-                    <p class='timeline-description'>Departure</p>
+                    <p className='timeline-description'>Departure</p>
                 </div>
             </div>
             {stop && (
-                <div class='timeline-item'>
-                    <div class='timeline-content'>
-                        <h5 class='timeline-title'>
+                <div className='timeline-item'>
+                    <div className='timeline-content'>
+                        <h5 className='timeline-title'>
                             {stop.name} ({stop.code})
                         </h5>
-                        <p class='timeline-description'>Layover</p>
+                        <p className='timeline-description'>Layover</p>
                     </div>
                 </div>
             )}
 
-            <div class='timeline-item'>
-                <div class='timeline-content'>
-                    <h5 class='timeline-title'>
+            <div className='timeline-item'>
+                <div className='timeline-content'>
+                    <h5 className='timeline-title'>
                         {to.name} ({to.code})
                     </h5>
-                    <p class='timeline-description'>Arrival</p>
+                    <p className='timeline-description'>Arrival</p>
                 </div>
             </div>
         </div>

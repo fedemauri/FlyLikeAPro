@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 import { dynamicApiKey } from '../utils/secret.ts';
 import {
     GoogleMap,
@@ -5,16 +7,9 @@ import {
     Marker,
     InfoWindow,
 } from '@react-google-maps/api';
-import { log } from 'console';
-
 import { useState } from 'react';
 
-function FlyMap(
-    {
-        /*coordinate*/
-    }
-) {
-    //const position = getCoordinateObj(coordinate);
+function FlyMap() {
     const position = {
         lat: -3.745,
         lng: -38.523,
@@ -24,18 +19,18 @@ function FlyMap(
         height: '350px',
     };
 
-    const [activeMarker, setActiveMarker] = useState(null);
+    const [activeMarker, setActiveMarker] = useState<any>(null);
 
-    const handleActiveMarker = (marker) => {
+    const handleActiveMarker = (marker: any) => {
         if (marker === activeMarker) {
             return;
         }
         setActiveMarker(marker);
     };
 
-    const handleOnLoad = (map) => {
+    const handleOnLoad = (map: google.maps.Map<Element>) => {
         const bounds = new google.maps.LatLngBounds();
-        markers.forEach(({ position }) => bounds.extend(position));
+        // markers.forEach(({ position }) => bounds.extend(position));
         map.fitBounds(bounds);
     };
 

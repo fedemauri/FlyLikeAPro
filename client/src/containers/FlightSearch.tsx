@@ -1,30 +1,37 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Flight } from '../components/Flight.tsx';
-import AirportContext from './AirportContext.tsx';
-import { SERVER_ADDR, getBestFlightsWithPrices } from '../utils/utils.ts';
 import { Card, ListGroup, Tabs, Tab } from 'react-bootstrap';
-import { log } from 'console';
+import { SelectionData } from '../App';
+import { SERVER_ADDR } from './../utils/utils.ts';
+import { Flight as FlightComponent } from '../components/Flight.tsx';
 
 type FlightSearchProps = {
-    from: string;
-    to: string;
-    price: number;
+    from: SelectionData | null;
+    to: SelectionData | null;
 };
 
-export const FlightSearch = ({ from, to }: FlightSearchProps) => {
-    const [flights, setFlights] = useState([]);
-    const [filter, setFilter] = useState('all');
-    const airportContext = useContext(AirportContext);
+type Flight = {
+    id: number;
+    code_departure: string;
+    code_arrival: string;
+    price: number;
+    code_layover?: string;
+    first_fly_id?: string;
+    second_fly_id?: string;
+};
 
-    console.log('filter', filter);
+export const FlightSearch: React.FC<FlightSearchProps> = ({
+    from,
+    to,
+}: FlightSearchProps) => {
+    const [flights, setFlights] = useState<Flight[]>([]);
+    const [filter, setFilter] = useState<string>('all');
 
     useEffect(() => {
-        let bestFlights = null;
         if (from?.value && to?.value) fetchData(from?.value, to?.value);
     }, [from, to]);
 
-    const fetchData = async (from, to) => {
+    const fetchData = async (from: string, to: string) => {
         try {
             const response = await axios.get(
                 `${SERVER_ADDR}/flight-connection?from=${from}&to=${to}`
@@ -68,15 +75,16 @@ export const FlightSearch = ({ from, to }: FlightSearchProps) => {
             case 'direct':
                 return flights.filter((el) => !el.code_layover);
             default:
-                console.log(`Sorry, we are out of ${expr}.`);
+                console.log(`Filter not available`);
+                return [];
         }
     };
 
-    const handleSelect = (key) => {
+    const handleSelect = (key: string) => {
         setFilter(key);
     };
 
-    if (flights?.length)
+    if (flights?.length) {
         return (
             <Card className='flight-search'>
                 {/* <Card.Img variant="top" />  */}
@@ -87,6 +95,7 @@ export const FlightSearch = ({ from, to }: FlightSearchProps) => {
                             <div className='resume-prices'>
                                 <Tabs
                                     defaultActiveKey='all'
+                                    // @ts-ignore
                                     onSelect={handleSelect}
                                 >
                                     <Tab eventKey='direct' title='Direct'>
@@ -108,7 +117,7 @@ export const FlightSearch = ({ from, to }: FlightSearchProps) => {
                                     </Tab>
                                 </Tabs>
                             </div>
-                            <span className='header-info'>{`From: ${from.value} To: ${to.value}`}</span>
+                            <span className='header-info'>{`From: ${from?.value} To: ${to?.value}`}</span>
                         </div>
                     </Card.Title>
                 </Card.Body>
@@ -118,9 +127,9 @@ export const FlightSearch = ({ from, to }: FlightSearchProps) => {
                             code_departure,
                             code_arrival,
                             price,
-                            code_layover,
+                            code_layover = null,
                         } = el;
-                        console.log('el', el);
+
                         return (
                             <ListGroup.Item
                                 key={
@@ -128,7 +137,7 @@ export const FlightSearch = ({ from, to }: FlightSearchProps) => {
                                     el.first_fly_id + ' ' + el.second_fly_id
                                 }
                             >
-                                <Flight
+                                <FlightComponent
                                     from={code_departure}
                                     to={code_arrival}
                                     price={price}
@@ -140,5 +149,7 @@ export const FlightSearch = ({ from, to }: FlightSearchProps) => {
                 </ListGroup>
             </Card>
         );
+    }
+
     return null;
 };

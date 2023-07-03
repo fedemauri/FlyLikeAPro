@@ -1,6 +1,6 @@
 {
     "$schema": "https://json.schemastore.org/tsconfig",
-    "display": "Create React App",
+    "display": "Fly like a PRO",
     "_version": "2.0.0",
 
     "compilerOptions": {
@@ -8,10 +8,11 @@
         "module": "esnext",
         "moduleResolution": "bundler",
         "target": "es2015",
-
+        "noImplicitAny": false,
         "allowJs": true,
         "allowImportingTsExtensions": true,
         "allowSyntheticDefaultImports": true,
+        "noImplicitThis": false,
         "esModuleInterop": true,
         "forceConsistentCasingInFileNames": true,
         "isolatedModules": true,

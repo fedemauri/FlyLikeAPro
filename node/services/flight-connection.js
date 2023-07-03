@@ -2,7 +2,6 @@ const db = require('../services/db');
 const config = require('../config');
 
 function getMultiple(from, to) {
-    console.log(from, to);
     const data = db.query(
         `SELECT * FROM flights WHERE code_departure = ? OR code_arrival = ?`,
         [from, to]

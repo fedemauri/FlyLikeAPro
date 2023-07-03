@@ -1,10 +1,19 @@
+type Flight = {
+    first_fly_id?: string;
+    second_fly_id?: string;
+    code_departure: string;
+    code_layover?: string;
+    code_arrival: string;
+    price: number;
+};
+
 export const getBestFlightsWithPrices = (
-    flights: array<any>,
+    flights: Array<any>,
     departureAirport: string,
     arrivalAirport: string
 ): Flight[] => {
     const flightsWithPrices: Flight[] = [];
-    const directFlights = flights.filter((flight) => {
+    const directFlights: Flight[] = flights.filter((flight) => {
         return (
             flight.code_departure === departureAirport &&
             flight.code_arrival === arrivalAirport
@@ -23,7 +32,7 @@ export const getBestFlightsWithPrices = (
         return flight.code_arrival === arrivalAirport;
     });
 
-    const connectionFlights = [];
+    const connectionFlights: Flight[] = [];
     departureFlights.forEach((departureFlight) => {
         arrivalFlights.forEach((arrivalFlight) => {
             if (departureFlight.code_arrival === arrivalFlight.code_departure) {

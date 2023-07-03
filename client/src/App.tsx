@@ -1,18 +1,24 @@
-import React, { useContext, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import { SERVER_ADDR } from './utils/utils.ts';
 import SearchInputs from './components/SearchInputs.tsx';
-import AirportContext, {
-    AirportProvider,
-} from './containers/AirportContext.tsx';
+import { AirportProvider } from './containers/AirportContext.tsx';
 import { Header } from './containers/Header.tsx';
 import { FlightSearch } from './containers/FlightSearch.tsx';
 import Promotions from './containers/Promotions.tsx';
 
-function App() {
-    const airportContext = useContext(AirportContext);
+export type SelectionData = {
+    value: string;
+    label: string;
+};
 
-    const [formData, setFormData] = useState({
+export type Data = {
+    from: SelectionData | null;
+    to: SelectionData | null;
+};
+
+function App() {
+    const [formData, setFormData] = useState<Data>({
         from: null,
         to: null,
     });
@@ -22,7 +28,7 @@ function App() {
         fetchData();
     }, []);
 
-    const fetchData = async (from, to) => {
+    const fetchData = async () => {
         try {
             const response = await axios.get(`${SERVER_ADDR}/airport`);
             if (response?.data?.data) setAirports(response.data.data);
@@ -31,10 +37,13 @@ function App() {
         }
     };
 
-    const handleSetTrip = (from, to) => {
+    const handleSetTrip = (
+        from: SelectionData | null,
+        to: SelectionData | null
+    ) => {
         setFormData({
-            from: from,
-            to: to,
+            from,
+            to,
         });
     };
 
@@ -42,11 +51,7 @@ function App() {
 
     return (
         <div className='App'>
-            <AirportProvider
-                value={{
-                    airports: airports,
-                }}
-            >
+            <AirportProvider value={{ airports }}>
                 <Header resetTrip={resetTrip} />
                 <div className='container'>
                     <SearchInputs data={formData} setData={setFormData} />

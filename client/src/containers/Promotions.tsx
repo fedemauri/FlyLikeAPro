@@ -1,13 +1,22 @@
+import React from 'react';
 import ImageWithText from '../components/ImageWithText.tsx';
-import { promotions } from '../data/promotions.js';
+import { promotionsData } from '../data/promotions.js';
+import { SelectionData } from '../App.tsx';
 
-const Promotions = ({ setTrip }) => {
+type PromotionsProps = {
+    setTrip: (from: SelectionData, to: SelectionData) => void;
+};
+
+const Promotions: React.FC<PromotionsProps> = ({ setTrip }) => {
     return (
-        <div class='promotions grid-container'>
-            {promotions.map((el) => (
+        <div className='promotions grid-container'>
+            {promotionsData.map((el) => (
                 <div
-                    class='grid-item'
+                    className='grid-item'
                     onClick={() => setTrip(el.code_departure, el.code_arrival)}
+                    key={
+                        el.code_departure?.value + '-' + el.code_arrival?.value
+                    }
                 >
                     <ImageWithText description={el.trip} img={el.img} />
                 </div>

@@ -1,12 +1,18 @@
+import React from 'react';
 import { Navbar, Container } from 'react-bootstrap';
 import siteLogo from './../img/site-icon.png';
 
-export const Header = ({ resetTrip }) => {
+type HeaderProps = {
+    resetTrip: () => void;
+};
+
+export const Header: React.FC<HeaderProps> = ({ resetTrip }) => {
     return (
         <Navbar className='top-header bg-body-tertiary'>
             <Container>
                 <Navbar.Brand>
-                    <img className={'logo'} src={siteLogo}></img> Fly like a PRO
+                    <img className={'logo'} src={siteLogo} alt='Site Logo' />
+                    Fly like a PRO
                 </Navbar.Brand>
                 <Navbar.Toggle />
                 <Navbar.Collapse className='justify-content-end'>

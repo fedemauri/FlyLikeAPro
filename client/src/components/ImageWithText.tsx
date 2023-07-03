@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { Figure } from 'react-bootstrap';
-import a from './../img/a.png';
 
-const ImageWithText = ({ img, description }) => {
+type ImageWithTextProps = {
+    img: string;
+    description: string;
+};
+
+const ImageWithText: React.FC<ImageWithTextProps> = ({ img, description }) => {
     const [isLoading, setIsLoading] = useState(true);
 
     return (

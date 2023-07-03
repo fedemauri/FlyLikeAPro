@@ -13,7 +13,7 @@ import mex from './../img/mex.jpeg';
 import cdg from './../img/cdg.jpeg';
 import phx from './../img/phx.jpeg';
 
-export const promotions = [
+export const promotionsData = [
     {
         code_departure: {
             value: 'ATL',
