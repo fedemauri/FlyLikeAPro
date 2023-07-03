@@ -11,7 +11,10 @@ Short project description
 
 ## Overview
 
-The "Fly like a PRO" Application is a web-based platform designed to help users find the best flights based on their travel requirements and preferences. It provides a user-friendly interface where users can input their departure and arrival airports. The application then retrieves and presents relevant flight options, allowing users to compare prices, flight layovers, and other details to make informed decisions.
+The "Fly like a PRO" Application is a web-based platform designed to help users find the best flights based on their travel requirements and preferences. It provides a user-friendly interface where users can input their departure and arrival airports.
+
+The application then retrieves and presents relevant flight options, allowing users to compare prices, flight layovers, and other details to make informed decisions.
+
 The main page shows a series of promotions, which represent an example of the most used routes and with the most connecting flights
 
 ## Installation
