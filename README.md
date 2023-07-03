@@ -1,4 +1,4 @@
-# FlyLikeAPro
+# Fly Like A Pro
 
 Short project description
 
